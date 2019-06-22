@@ -2,7 +2,8 @@
 class PHPXMLSitemap {
   public $items = [];
 
-  public function __construct($root = null) {
+  public function __construct($root = null, $options = []) {
+    $this->options = array_merge($this->defaults(), $options);
     $this->root = ($root) ? $root : '';
   }
 
@@ -10,12 +11,12 @@ class PHPXMLSitemap {
     $loc = ($loc == '/') ? '' : $loc;
     $loc = ($this->root == '' || $loc == '') ? $loc : '/' . $loc;
 
-    $this->items[] = array_merge($this->defaults(), array_filter([
+    $this->items[] = [
       'loc' => $this->root . $loc,
       'priority' => $priority,
       'changefreq' => $changefreq,
       'lastmod' => $lastmod,
-    ]));
+    ];
   }
 
   public function render() {
@@ -25,9 +26,9 @@ class PHPXMLSitemap {
 
   private function defaults() {
     return [
-      'priority' => '0.5',
-      'changefreq' => 'daily',
-      'lastmod' => date('Y-m-d'),
+      'version' => '1.0',
+      'encoding' => 'utf-8',
+      'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9',
     ];
   }
 }

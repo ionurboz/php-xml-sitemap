@@ -1,6 +1,6 @@
 # PHP XML Sitemap
 
-*Version 1.0*
+*Version 1.1*
 
 ## In short
 
@@ -31,12 +31,21 @@ It will generate something like below:
     <loc>https://example.com</loc>
   </url>
   <url>
-    <priority>0.5</priority>
-    <changefreq>daily</changefreq>
-    <lastmod>2019-04-22</lastmod>
     <loc>https://example.com/about</loc>
   </url>
 </urlset>
+```
+
+## Options
+
+By default no options are needed and what you see below in the second argument are the defaults as array.
+
+```php
+$sitemap = new PHPXMLSitemap('https://example.com', [
+  'version' => '1.0',
+  'encoding' => 'utf-8',
+  'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9'
+]);
 ```
 
 ## Donate
